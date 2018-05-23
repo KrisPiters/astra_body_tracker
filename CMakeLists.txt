@@ -15,9 +15,13 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
-set(CMAKE_MODULE_PATH "/home/system/AstraSDK/samples/cmake/")
-#list(APPEND CMAKE_MODULE_PATH "/home/system/AstraSDK/samples/cmake/")
-set(ASTRA_SAMPLES_COMMON_DIR "/home/system/AstraSDK/samples/common/")
+# Make patchs below match the download location of the astra_sdk
+set(CMAKE_MODULE_PATH "/home/kris/testing/astra_sdk/samples/cmake")
+set(ASTRA_SAMPLES_COMMON_DIR "/home/kris/testing/astra_sdk/samples/common/")
+set(ASTRA_INCLUDE_DIR "/home/kris/testing/astra_sdk/include")
+set(ASTRA_LIBRARIES /home/kris/testing/astra_sdk/lib/libastra.so /home/kris/testing/astra_sdk/lib/libastra_core.so /home/kris/testing/astra_sdk/lib/libastra_core_api.so)
+
+
 
 MESSAGE( STATUS "AFTER:" )
 foreach(path ${CMAKE_MODULE_PATH})
@@ -137,7 +141,7 @@ include_directories(
 # include
 #  /home/system/AstraSDK/samples/cmake/astra/capi
   ${ASTRA_INCLUDE_DIR}
-  ${ASTRA_INCLUDE_DIR}/astra/capi
+  ${ASTRA_INCLUDE_DIR}/astra_core/capi
   ${ASTRA_SAMPLES_COMMON_DIR}
   ${catkin_INCLUDE_DIRS}
 )
@@ -171,6 +175,7 @@ add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catk
 target_link_libraries(${PROJECT_NAME}_node
    ${ASTRA_LIBRARIES}
    ${catkin_LIBRARIES}
+
 )
 
 #############

@@ -16,6 +16,7 @@
 
 // #include <astra_body_tracker/BodyInfo.h>  // Publish custom message
 #include "body_tracker_msgs/BodyTracker.h"  // Publish custom message
+#include "body_tracker_msgs/Skeleton.h"
 #include <visualization_msgs/Marker.h>
 
 class astra_body_tracker_node 
@@ -37,7 +38,7 @@ public:
     body_tracking_pose_pub_ = nh_.advertise<geometry_msgs::PoseStamped>
       ("body_tracker/pose", 1); // NOTE: We only provide to POSITION not full pose
 
-    body_tracking_data_pub_ = nh_.advertise<body_tracker_msgs::BodyTracker>
+    body_tracking_data_pub_ = nh_.advertise<body_tracker_msgs::Skeleton>
       ("body_tracker/skeleton", 1);
 
     marker_pub_ = nh_.advertise<visualization_msgs::Marker>
@@ -257,7 +258,8 @@ public:
 
           // Create structures for ROS Publisher data
           geometry_msgs::PoseStamped body_pose;
-          body_tracker_msgs::BodyTracker_ <body_tracker_msgs::BodyTracker> skeleton_data;
+          //body_tracker_msgs::BodyTracker_ <body_tracker_msgs::BodyTracker> skeleton_data;
+          body_tracker_msgs::Skeleton_ <body_tracker_msgs::Skeleton> skeleton_data;
 
           // Fill in message data from AstraSDK data
           // Astra z,x,y coordinates are mapped to ROS x,y,z coordinates 
